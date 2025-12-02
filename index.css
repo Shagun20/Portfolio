@@ -1,0 +1,52 @@
+/* ---------- BASE ---------- */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+:root {
+  --bg-main: #F7F9FB;
+  --bg-panel: #FFFFFF;
+
+  --font:"Arial Nova";
+
+  --border-light: #E5E8EB;
+
+  --text-primary: #1D3B53;
+  --text-secondary: #6B7A90;
+  --text-muted: #A0A8B3;
+
+  --primary-blue: #29B5E8;
+  --primary-blue-hover: #1CA3DB;
+
+  --success-green: #2CB67D;
+  --warning-yellow: #F7C325;
+  --error-red: #D64545;
+
+  /* SQL editor colors */
+  --sql-keyword: #0074D9;
+  --sql-string: #2B9348;
+  --sql-number: #B52D3A;
+  --sql-comment: #9AA5B1;
+
+  --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* ---------- GLOBAL PAGE STYLING ---------- */
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--bg-main);
+  font-family:Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+}
+
+
+
+/* ---------- SQL EDITOR BLOCK ---------- */
+
+/* ---------- RESULTS TABLE ---------- */

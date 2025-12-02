@@ -1,0 +1,101 @@
+.sideNav {
+  width: 70px;
+  height: 100vh;               /* Always full height */
+  background: #f7f7f7;
+  border-right: 1px solid #e6e8eb;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 12px;
+    border-right: 1px solid #E6E8EB;   /* <-- THIS LINE */
+       /* Scroll if icons exceed area */
+
+}
+
+/* DIVIDERS */
+.sf-divider {
+  width: 40px;
+  height: 1px;
+  background: #e3e7eb;
+  margin: 10px 0;
+}
+
+/* MAIN ICON SECTION */
+.sf-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+}
+
+/* ICONS */
+.sf-group i,
+.sf-item {
+  font-size: 16px;
+  color: #474747;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.sf-group i,
+.sf-item{
+  font-size: 16px;
+  color: #474747;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 12px;
+}
+
+.icon-blue {
+  color: #29ABE2 !important;  
+  font-weight:bolder !important;
+    font-size: 20px  !important;
+/* override the default gray */
+}
+
+
+/* ACTIVE ITEM */
+.sf-item.active {
+  background: #e9f3ff;
+  color: #29B5E8;
+  border-radius: 12px;
+}
+
+/* HOVER EFFECT */
+.sf-group i:hover {
+  background: #f2f7ff;
+  color: #29B5E8;
+}
+
+/* BOTTOM SECTION */
+.sf-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
+  align-items: center;
+}
+
+/* PROFILE BUBBLE */
+.sf-profile {
+  width: 38px;
+  height: 38px; /* Correct size */
+  border-radius: 50%;
+  border: 1px solid #d8dde5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  background: white;
+  color: #444;
+}
+
+
+
