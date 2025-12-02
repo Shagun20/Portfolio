@@ -1,0 +1,136 @@
+.sidebarcontainer {
+    height: 100vh;
+    background: #FBFBFB;
+    border-right: 1px solid #E6E8EB;
+    top: 0;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 10px;
+      position: relative; /* IMPORTANT */
+        
+        box-sizing: border-box;
+
+
+
+
+    /* << Adds Snowflake-like padding */
+}
+
+.sidebarcontainer * {
+  /* width: 100%; */
+  box-sizing: border-box;
+}
+
+
+.no-select {
+  user-select: none !important;
+}
+
+
+.resizer {
+  position: absolute;
+  top: 0;
+  right: 0; /* Stick to right edge */
+  width: 6px;
+  height: 100%;
+  background: none;
+  cursor: ew-resize;
+}
+
+.resizer:hover {
+
+  background: #007bff;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    
+    
+}
+
+
+
+.workspace-header {
+    display: flex;
+    font-size: 13px;
+
+    color: #4A4A4A;
+    font-weight: 500;
+    gap: 4px;
+}
+
+.workspace-icon {
+    margin-left: 2px;
+    width: 18px;
+    height: 18px;
+    font-weight: 100;
+}
+
+.file-list{
+    margin-top: 8px;
+    text-align: left !important; /* */
+    margin-left: 0;
+    padding-left: 0;
+    
+}
+
+
+
+
+
+
+.file-button:hover{
+    background: #E9F3FF !important;
+
+}
+
+.file-button.active{
+    background: #E9F3FF !important;
+
+}
+
+#file-search {
+    width: 100% !important;
+    height: 24px;
+    padding: 8px 10px;
+    border-radius: 6px;
+
+    border-color: transparent;
+    background: #ECEEF1;
+    font-size: 13px;
+
+    border-top: none;
+    border-left: none;
+    /* removes the top border if that's the issue */
+    box-shadow: none;
+    /* removes any shadow */
+
+    padding-left: 30px;
+
+    /* Search icon inside the input */
+    background-image: url("../assets/grey_search.svg");
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 8px center;
+    transition: 0.3s ease;
+    /* Smooth transition for border color changes */
+    outline: none;
+    /* remove default outline */
+
+
+}
+
+#file-search:focus {
+    
+    border-color: #86b6fc;
+  background-image: url('../assets/blue_search.svg');
+    /* Highlight color for the border */
+    box-shadow: lightblue;
+    outline: lightblue;
+}
+

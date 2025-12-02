@@ -1,0 +1,186 @@
+.toolbar {
+    display: flex;
+    padding: 0px 16px;
+    background: white;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: sans-serif;
+}
+
+.left{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.dropdown-toggle-custom {
+    border-left: 1px solid rgba(255, 255, 255, 0.3) !important;
+
+    padding: 4px 4px !important;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3 !important;
+}
+
+/* Toolbar icons */
+.icon,
+.icon-grid {
+    cursor: pointer;
+    font-size: 18px;
+    color: #444;
+}
+
+
+/* Hover effects to match real UI feel */
+.icon:hover,
+.icon-grid:hover,
+.btn:hover,
+.more-btn:hover,
+.share-btn:hover {
+    background: #e8f0fe;
+    transition: 0.2s ease;
+}
+
+.sf-toolbar {
+  background: #fff;
+  padding: 6px 12px;
+  border-bottom: 1px solid #e3e3e3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Inter", sans-serif;
+}
+
+
+
+.sf-icon {
+  font-size: 15px;
+  color: #444;
+  display: flex;
+  align-items: center;
+}
+
+.sf-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1d;
+}
+
+.sf-separator {
+  font-size: 14px;
+  margin: 0 2px;
+  color: #555;
+}
+
+
+
+.sf-link:hover {
+  text-decoration: underline;
+}
+
+button {
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #f7f8f9;
+  display: flex;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #ebedf0;
+}
+
+
+
+.sf-more-btn {
+  padding: 6px 10px;
+}
+
+
+
+.sql-editor {
+  background: var(--bg-panel);
+  border:none;
+  
+  padding: 16px;
+  white-space: pre-wrap;
+  font-family: "Fira Code", monospace;
+    display: flex;
+
+}
+
+
+.sql-editor > div {
+  height: 100%;
+}
+
+
+.sql-container {
+  display: flex;
+  flex-wrap: wrap;       /* allows words to wrap to the next line */
+}
+
+.sql-word {
+  flex: 0 0 calc(100% / 6); /* 6 words per line */
+  box-sizing: border-box;
+}
+
+/* syntax colors */
+.sql-editor .sql-keyword { color: var(--sql-keyword); }
+.sql-editor .sql-number{ color: var(--sql-string); }
+.sql-editor  .sql-string  { color: var(--sql-number); }
+.sql-editor .comment { color: var(--sql-comment); }
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Initially hide the search bar */
+.search-box {
+  display: none;
+
+}
+
+/* Show search bar and hide icon on hover */
+.search-container:hover .search-box {
+  display: inline-flex;   /* Bootstrap flex layout */
+}
+
+.search-container:hover .search-icon {
+  display: none;
+
+}
+
+/* Optional: remove button borders */
+.search-box {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+.table-scroll-wrapper {
+  max-height: 250px;     /* vertical scroll */
+  overflow-y: auto;      /* vertical scroll */
+  overflow-x: auto;      /* horizontal scroll */
+  border-radius: 8px;    /* rounded container */
+  border: 1px solid var(--border-light);
+}
+
+/* make table full width */
+.table-scroll-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+
+.play:focus{
+
+  transform: scale(1.06);
+}

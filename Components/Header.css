@@ -1,0 +1,64 @@
+.nav-tabs {
+  border-bottom: 1px solid #E6E8EB !important; /* Remove default Bootstrap underline */
+  font: "Helvetica Neue" !important;
+  font-weight: 500 !important;
+  background: #FBFBFB;
+  
+   margin-bottom: 0;
+   padding-bottom: 0;
+   cursor: pointer;
+
+  
+}
+
+.nav-tabs .nav-link {
+  width: fit-content;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-item .nav-link {
+  
+  font-size: 12px;
+      font-weight: 500;
+
+  padding: 6px 10px;
+  border-radius: 0px;
+  background: #FBFBFB;
+  color: #4A4A4A;
+  border: 1px solid #E6E8EB;
+  border-left: none;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-item .nav-link.active {
+  background: #ffffff !important;
+  color: #085BD7 !important;
+  border: none;
+  border-radius: 2px;
+  border-top: 3px solid #085BD7 !important;
+  font-weight: 500;
+  border-bottom: none;
+}
+
+.nav-item .nav-link i {
+  font-size: 12px;
+}
+
+.nav-link:focus {
+  box-shadow: none !important;
+}
+
+.close-btn {
+    background-color: transparent;
+    border: none;
+    color:#085BD7;
+    font-weight: bold;
+    font-size: 10px;
+    cursor: pointer;
+    padding:0 0;
+    transition: background-color 0.2s;
+}
