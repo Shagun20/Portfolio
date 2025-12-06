@@ -39,13 +39,18 @@ import './results.css'
 //   );
 // }
 
-function DynamicTable({ data }) {
+function DynamicTable({ data, cols }) {
+  
+  const result = Object.keys(cols).filter(key => cols[key] === true);
+  
   return (
-    <div className="table-responsive border rounded" style={{maxHeight: "200px", overflowY : "auto"}}>
+
+    
+    <div className="mt-2 table-responsive border rounded" style={{maxHeight: "300px", overflowY : "auto"}}>
       <table className="results-table table table-bordered">
         <thead>
           <tr>
-            {Object.keys(data[0]).map((key) => (
+            {result.map((key) => (
               <th key={key}>{key}</th>
             ))}
           </tr>
@@ -54,8 +59,9 @@ function DynamicTable({ data }) {
         <tbody>
           {data.map((row, i) => (
             <tr key={i}>
-              {Object.values(row).map((val, j) => (
-                <td key={j}>{val}</td>
+              
+              {Object.keys(row).filter((key) => result.includes(key)).map((val, j) => (
+                <td key={j}>{row[val]}</td>
               ))}
             </tr>
           ))}

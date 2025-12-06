@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import AboutMe from "./Worksheets/AboutMe";
 import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useEffect} from 'react'
 
 import { Outlet } from "react-router-dom";
 
 export default function Workspace({ tab }) {
+    const [database, setDatabase] = useState('Choose Database');
+
     return (
         <div className="flex-grow-1 p-2" style={{ overflow: "auto" }}>
 

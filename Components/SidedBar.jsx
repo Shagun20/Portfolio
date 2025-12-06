@@ -60,7 +60,7 @@ const [searchInput, setSearchInput] = useState("");
     const sidebar = document.querySelector(".sidebarcontainer");
     const resizer = document.querySelector(".resizer");
     const [isResizing, setIsResizing] = useState(false);
-    const [setWidth, setSidebarWidth] = useState(280);
+    const [setWidth, setSidebarWidth] = useState(270);
     const sidebarRef = useRef(null);
 
 
@@ -86,7 +86,7 @@ const [searchInput, setSearchInput] = useState("");
                 mouseMoveEvent.clientX -
                 sidebarRef.current.getBoundingClientRect().left;
 
-            newWidth = Math.min(Math.max(newWidth, 200), 700); // min/max width
+            newWidth = Math.min(Math.max(newWidth, 250), 280); // min/max width
 
             setSidebarWidth(newWidth);
         },

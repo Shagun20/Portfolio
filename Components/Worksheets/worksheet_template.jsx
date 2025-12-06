@@ -130,7 +130,7 @@ return (<>
                     <div class="dropdown-menu shadow-none" aria-labelledby="dropdownMenuButton" style={{
                         minWidth: "unset !important", width: "auto", height: "auto", fontSize: "12px", font: "Arial"
                     }}>
-                        <a class="dropdown-item text-primary fw-semibold" onClick={() => changeDB("SHAGUN_DATA_DB")} href="#"> <i class="bi bi-database me-1"></i> SHAGUN_DATA_DB</a>
+                        <a class="dropdown-item text-primary fw-semibold" onClick={() => changeDB("SHAGUN_DATA_DB")} > <i class="bi bi-database me-1"></i> SHAGUN_DATA_DB</a>
 
                     </div>
                 </div>
