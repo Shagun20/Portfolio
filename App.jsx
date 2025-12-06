@@ -6,7 +6,10 @@ import HeaderNav from "./Components/HeaderNav"
 import Sidebar from './Components/SidedBar'
 import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom';
-import './App.css'
+import './App.css';
+import ResumePDF from './Data/Resume.pdf';
+import download from "downloadjs";
+
 import AboutMe from './Components/Worksheets/AboutMe';
 import Education from './Components/Worksheets/Education';
 import Skills from './Components/Worksheets/Skills';
@@ -28,6 +31,7 @@ function App() {
 
   const [tab, setTab] = useState(mapping[fullUrl.substring(fullUrl.lastIndexOf('/') + 1)]); //this is the tab thats active right noww
 
+  
   return (
     <>
 
@@ -37,29 +41,35 @@ function App() {
 
           <div className="sf-group d-flex flex-column align-items-center">
             <i className="bi bi-snow icon-blue"></i>
-            <i className="bi bi-arrow-right"></i>
-            <div className="sf-divider"></div>
-
-            <div className="sf-item active">
-              <i className="bi bi-house-door"></i>
+            <div className="sf-item active">             <i className="bi bi-house-door"></i>
             </div>
 
-            <i className="bi bi-plus-lg"></i>
-            <i className="bi bi-search"></i>
+            <div className="sf-divider"></div>
+
+
+            <img style={{ cursor: 'pointer' }} onClick={() => { window.open("https://leetcode.com/u/shagunmohta2019/") }}
+              width="18" height="18" src="https://img.icons8.com/external-tal-revivo-color-tal-revivo/24/external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo.png" alt="external-level-up-your-coding-skills-and-quickly-land-a-job-logo-color-tal-revivo" />
+
+            <i class="bi bi-github" onClick={() => { window.open("https://github.com/Shagun20") }}></i>
+
 
             <div className="sf-divider"></div>
 
-            <i className="bi bi-image"></i>
-            <i className="bi bi-cloud-arrow-down"></i>
-            <i className="bi bi-grid-3x3-gap"></i>
-            <i className="bi bi-stars"></i>
-            <i className="bi bi-activity"></i>
-            <i className="bi bi-shop"></i>
+            <i class="bi bi-linkedin" onClick={() => { window.open("https://www.linkedin.com/in/shagun-mohta-9012041b8") }}></i>
+
+
+            <i className="bi bi-file-earmark-pdf" onClick={() => {
+              const link = document.createElement("a");
+              link.href = ResumePDF;
+              link.download = "Resume.pdf";
+              link.click();
+            }}></i>
+
+
 
             <div className="sf-divider"></div>
 
-            <i className="bi bi-database"></i>
-            <i className="bi bi-chevron-up"></i>
+            <a href="mailto:shagunmohta2025@gmail.com" ><i class="bi bi-envelope"> </i> </a>
           </div>
           <div className="sf-bottom">
             <i className="bi bi-bell"></i>
@@ -70,7 +80,7 @@ function App() {
         </div>
 
         <div className="d-flex flex-grow-1" style={{ marginLeft: "70px", height: "100vh", width: "calc(100vw - 70px)" }}>
-          <Sidebar/>
+          <Sidebar />
           <div className="flex-grow-1">
             <HeaderNav>
             </HeaderNav>
@@ -110,13 +120,10 @@ function App() {
                   path="projects"
                   element={<Projects database={database} changeDB={setDatabase} />}
                 />
-
-                <Route
-                  index
-                  element={<AboutMe database={database} changeDB={setDatabase} />}
-                />
               </Route>
             </Routes>
+
+
 
 
 
@@ -124,7 +131,7 @@ function App() {
         </div>
 
 
-      </div>
+      </div >
 
       <Toaster />
 
