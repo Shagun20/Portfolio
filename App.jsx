@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import Button from 'react-bootstrap/Button';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Workspace from "./Components/Workspace"
@@ -8,7 +8,8 @@ import { Toaster } from 'react-hot-toast'
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import ResumePDF from './Data/Resume.pdf';
-import download from "downloadjs";
+import { Navigate, useNavigate } from "react-router-dom";
+
 
 import AboutMe from './Components/Worksheets/AboutMe';
 import Education from './Components/Worksheets/Education';
@@ -16,22 +17,32 @@ import Skills from './Components/Worksheets/Skills';
 import Contact from './Components/Worksheets/Contact';
 import WorkEx from './Components/Worksheets/WorkEx';
 import Extra from './Components/Worksheets/Extra';
-import Hobbies from './Components/Worksheets/Hobbies';
+import Courses from './Components/Worksheets/Courses';
 import Projects from './Components/Worksheets/Projects';
 
+
 function App() {
+
+
+
 
   const [database, setDatabase] = useState('Choose Database');
   const fullUrl = window.location.href.replace(/\/+$/, ""); // For the full URL
 
   const mapping = {
     "aboutme": "AboutMe.sql", 'education': 'Education.sql', "work_ex": 'Work_Ex.sql', "projects": "Projects.sql",
-    "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "hobbies": "Hobbies.sql"
+    "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "courses": "Courses.sql"
   }
 
   const [tab, setTab] = useState(mapping[fullUrl.substring(fullUrl.lastIndexOf('/') + 1)]); //this is the tab thats active right noww
 
-  
+ 
+  const navigate= useNavigate();
+   useEffect(() => {
+    navigate("/portfolio/workspace-shagun/aboutme");
+  }, []);
+
+
   return (
     <>
 
@@ -89,6 +100,11 @@ function App() {
               <Route path="/portfolio/workspace-shagun/" element={<Workspace tab={tab} />}>
 
                 <Route
+                  index
+                  element={<Navigate to="aboutme" replace />}
+                />
+
+                <Route
                   path="aboutme"
                   element={<AboutMe database={database} changeDB={setDatabase} />}
                 />
@@ -105,8 +121,8 @@ function App() {
                   element={<Extra database={database} changeDB={setDatabase} />}
                 />
                 <Route
-                  path="hobbies"
-                  element={<Hobbies database={database} changeDB={setDatabase} />}
+                  path="courses"
+                  element={<Courses database={database} changeDB={setDatabase} />}
                 />
                 <Route
                   path="education"

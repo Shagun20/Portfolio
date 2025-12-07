@@ -51,7 +51,7 @@ function DynamicTable({ data, cols }) {
         <thead>
           <tr>
             {result.map((key) => (
-              <th key={key}>{key}</th>
+              <th  key={key}>{key}</th>
             ))}
           </tr>
         </thead>

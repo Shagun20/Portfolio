@@ -16,7 +16,7 @@ function Sidebar() {
 
     const mapping = {
         "aboutme": "AboutMe.sql", 'education': 'Education.sql', "work_ex": 'Work_Ex.sql', "projects": "Projects.sql",
-        "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "hobbies": "Hobbies.sql"
+        "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "courses": "Courses.sql"
     }
 
     let fileA = mapping[fullUrl.substring(fullUrl.lastIndexOf('/') + 1)]; //this is the tab thats active right noww
@@ -52,7 +52,7 @@ const [searchInput, setSearchInput] = useState("");
         'Projects.sql',
         'Skills.sql',
         'Extra_Curriculars.sql',
-        'Hobbies.sql',
+        'Courses.sql',
         'Contact.sql']
 
     const [file_list, setfile_list]=useState(original_file_list);

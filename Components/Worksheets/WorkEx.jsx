@@ -1,17 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Worksheet from './worksheet_template'
 import '../Worksheets/worksheet.css'
 import { sql_work } from '../../Data/worksheets'
 import DynamicTable from '../Worksheets/results'
 import { keywords } from '../../Data/worksheets'
+import { CSVLink } from 'react-csv';
+
 
 function WorkEx({ database, changeDB }) {
 
-    const show = true;
+
+    const [data, setData] = useState(sql_work.results || []);
+
     const [is_run, run_sql] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
 
-    
+    const [cols, setCols] = useState(Object.keys(sql_work.results[0]).reduce((acc, col) => {
+        acc[col] = true;   // default checked
+        return acc;
+    }, {}))
+
+
+    const [searchRow, setSearchRow] = useState("");
+
+    useEffect(() => {
+
+
+        if (searchRow && searchRow.length > 0) {
+
+            setData(sql_work.results.filter((row) =>
+                Object.values(row).some(value =>
+                    String(value).toLowerCase().includes(searchRow.toLowerCase())
+                )
+            ) || [])
+
+            console.log(data)
+
+
+
+        }
+        else {
+            setData(sql_work.results || [])
+        }
+
+
+
+    }, [searchRow]);
+
 
     console.log(is_run);
     const sql_words = sql_work.query.split(" ");
@@ -34,10 +69,12 @@ function WorkEx({ database, changeDB }) {
         <Worksheet {...worksheetProps}> </Worksheet >
 
 
-        <div className="d-flex sql-editor bg-white border-0" style={{ "height": "40vh" }}>
+        <div className="d-flex sql-editor bg-white border-0" style={{ "height": "27vh" }}>
 
-            <div className="d-flex col-1 my-2 justify-content-end p-3 border-end border-1 small border-light"
-            > {count}</div>
+            <div className="d-flex my-2 justify-content-end p-3 border-end border-1 small border-light"
+                style={{ width: "40px" }}>
+                {count}
+            </div>
             <div className='d-flex col-1 my-4 justify-content-end py-2 border-end border-1'
                 style={{
                     width: "3px",
@@ -66,7 +103,8 @@ function WorkEx({ database, changeDB }) {
                         return (
                             <div
                                 key={word}
-                                className={`text p-1 ${isKeyword ? "text-uppercase sql-keyword" : isString ? "sql-string" : isNo ? sql - number : "text-lowercase"}`}
+                                className={`text p-1 ${isKeyword ? "text-uppercase sql-keyword" : isString ? "sql-string" : isNo ? "sql-number" :
+                                    "text-lowercase"}`}
                             >
                                 {word}
                             </div>
@@ -86,24 +124,26 @@ function WorkEx({ database, changeDB }) {
             className="border rounded bg-white p-3 d-flex flex-column"
             style={{
                 transition: "height 0.3s ease, margin-top 0.5s ease",
-                height: isOpen ? "calc(100vh - 40vh)" : "calc(100vh - 85vh)",
-                marginTop: is_run ? isOpen ? "0" : "220px" : "300px"   // << this makes it SWIFT DOWN
+                height: isOpen ? "calc(100vh - 45vh)" : "calc(100vh - 85vh)",
+                // marginTop: is_run && isOpen? "5vh":"50vh"  // << this makes it SWIFT DOWN
+                marginTop: is_run ? isOpen ? "0" : "50vh" : "60vh"
+
 
             }}
 
 
         >
 
-            {/* HEADER ROW */}
-            <div className="row mb-2">
+            <div className="row mb-1">
                 <button
-                    className="btn btn-sm me-2"
+                    className="btn btn-sm w-100 small align-items-center justify-content-center"
+                    style={{ height: "20px" }}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
-                        <i className="bi bi-chevron-up"></i>
+                        <i class="bi bi-chevron-double-down"></i>
                     ) : (
-                        <i className="bi bi-chevron-down"></i>
+                        <i class="bi bi-chevron-double-up"></i>
                     )}
                 </button>
 
@@ -114,10 +154,8 @@ function WorkEx({ database, changeDB }) {
 
 
 
-                {/* RIGHT SIDE ICONS + SEARCH BAR */}
                 {isOpen && <div className="col-6 d-flex align-items-center justify-content-end text-secondary">
 
-                    {/* SEARCH BOX */}
                     <div
                         className="d-flex align-items-center search-container small me-2"
                         style={{ height: "20px", fontSize: "12px" }}
@@ -129,40 +167,101 @@ function WorkEx({ database, changeDB }) {
                             <input
                                 className="bg-light"
                                 type="text"
+                                value={searchRow}
+                                onChange={(e) => { setSearchRow(e.target.value) }}
+
                                 style={{ border: "none", outline: "none" }}
                                 placeholder="Search results"
                             />
                         </button>
                     </div>
 
-                    {/* FILTER ICON */}
+
+
                     <button
-                        className="btn small me-2"
-                        style={{ fontSize: "12px", border: "none" }}
+                        className="btn small ms-2 me-2 bg-white d-flex align-items-center justify-content-center"
+                        data-bs-toggle="dropdown"
+                        title={"Filter Table Columns"}
+                        aria-expanded="false"
+                        style={{
+                            fontSize: "12px",
+                            fontFamily: "Arial",
+                            border: "none",
+
+                        }}
                     >
                         <i className="bi bi-funnel"></i>
                     </button>
 
-                    {/* INFO ICON */}
-                    <button
-                        className="btn small me-2"
-                        style={{ fontSize: "11px", border: "none" }}
+                    <div
+                        className="dropdown-menu shadow-none p-2"
+                        style={{
+                            minWidth: "auto",
+                            width: "150px",
+                            fontSize: "12px",
+                            fontFamily: "Arial",
+                        }}
                     >
-                        1 row <i className="bi bi-info-circle"></i>
+
+                        {
+                            Object.keys(sql_work.results[0]).map((col) => (
+                                <div className="form-check">
+                                    <input className="form-check-input" type="checkbox" checked={cols[col]} id={col}
+                                        onChange={(e) => {
+
+                                            setCols(prev => {
+                                                const updated = { ...prev, [e.target.id]: !prev[e.target.id] };
+                                                // console.log("Updated:", updated);
+                                                return updated;
+                                            });
+
+
+                                        }}></input>
+                                    <label className="form-check-label" htmlFor="opt1">
+                                        {col}
+                                    </label>
+                                </div>
+                            ))
+
+                        }
+
+
+
+                    </div>
+
+
+
+                    <button
+                        className="btn small me-1"
+                        title={"Table Contains " + data.length + " rows"}
+                        style={{ fontSize: "11px", border: "none", cursor: "default" }}
+                    >
+                        {data.length} rows <i className="bi bi-info-circle"></i>
                     </button>
 
-                    {/* DOWNLOAD ICON */}
-                    <button
-                        className="btn small"
-                        style={{ fontSize: "12px", border: "none" }}
-                    >
-                        <i className="bi bi-download text-secondary"></i>
-                    </button>
+
+                    <CSVLink data={data} filename="Work_Ex_Shagun_Mohta.csv">
+                        <button
+                            className="btn small"
+                            title={"Download Table"}
+
+                            style={{ fontSize: "12px", border: "none" }}
+                        >
+                            <i className="bi bi-download text-secondary"></i>
+                        </button>
+                    </CSVLink>
+
                 </div>}
             </div>
 
 
-            {isOpen && <DynamicTable data={sql_work.results} />}
+            {isOpen ? (
+                data.length > 0 ? (
+                    <DynamicTable data={data} cols={cols} />
+                ) : (
+                    <div className='mx-auto align-items-center justify-content-center text-small text-secondary'>No results found.</div>
+                )
+            ) : null}
 
 
         </div >

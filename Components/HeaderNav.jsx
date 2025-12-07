@@ -19,7 +19,7 @@ function HeaderNav() {
         'Projects.sql',
         'Skills.sql',
         'Extra_Curriculars.sql',
-        'Hobbies.sql',
+        'Courses.sql',
         'Contact.sql']);   // dynamic
 
 
@@ -32,7 +32,7 @@ function HeaderNav() {
 
     const mapping = {
         "aboutme": "AboutMe.sql", 'education': 'Education.sql', "work_ex": 'Work_Ex.sql', "projects": "Projects.sql",
-        "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "hobbies": "Hobbies.sql"
+        "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "courses": "Courses.sql"
     }
 
     useEffect(() => {

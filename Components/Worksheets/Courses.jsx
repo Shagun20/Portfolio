@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Worksheet from './worksheet_template'
 import '../Worksheets/worksheet.css'
-import { sql_project } from '../../Data/worksheets'
-import DynamicTable from '../Worksheets/results'
+import { sql_courses } from '../../Data/worksheets'
+import DynamicTable from './results'
 import { keywords } from '../../Data/worksheets'
 import { CSVLink } from 'react-csv';
 
 
-function Projects({ database, changeDB }) {
+function Courses({ database, changeDB }) {
 
 
-    const [data, setData] = useState(sql_project.results || []);
+    const [data, setData] = useState(sql_courses.results || []);
 
     const [is_run, run_sql] = useState(false);
     const [isOpen, setIsOpen] = useState(true);
 
-    const [cols, setCols] = useState(Object.keys(sql_project.results[0]).reduce((acc, col) => {
+    const [cols, setCols] = useState(Object.keys(sql_courses.results[0]).reduce((acc, col) => {
         acc[col] = true;   // default checked
         return acc;
     }, {}))
@@ -28,7 +28,7 @@ function Projects({ database, changeDB }) {
 
         if (searchRow && searchRow.length > 0) {
 
-            setData(sql_project.results.filter((row) =>
+            setData(sql_courses.results.filter((row) =>
                 Object.values(row).some(value =>
                     String(value).toLowerCase().includes(searchRow.toLowerCase())
                 )
@@ -40,7 +40,7 @@ function Projects({ database, changeDB }) {
 
         }
         else {
-            setData(sql_project.results || [])
+            setData(sql_courses.results || [])
         }
 
 
@@ -49,12 +49,12 @@ function Projects({ database, changeDB }) {
 
 
     console.log(is_run);
-    const sql_words = sql_project.query.split(" ");
+    const sql_words = sql_courses.query.split(" ");
     const count = 1;
 
     const worksheetProps = {
         database: database,
-        file: sql_project.file,
+        file: sql_courses.file,
         changeDB: changeDB,
         run_sql: run_sql
     };
@@ -93,7 +93,7 @@ function Projects({ database, changeDB }) {
                         const counter = index + 1;
                         const isKeyword = keywords.includes(word.toUpperCase());
                         const isString = word.includes("\'")
-                        const isNo = word.toLowerCase().includes("array_agg")
+                        const isNo = word.toLowerCase().includes("array_agg") || Number.isFinite(Number(word))
                         // const lengthScore = word.length * 2;
                         // const someCalc = counter * lengthScore;
 
@@ -204,7 +204,7 @@ function Projects({ database, changeDB }) {
                     >
 
                         {
-                            Object.keys(sql_project.results[0]).map((col) => (
+                            Object.keys(sql_courses.results[0]).map((col) => (
                                 <div className="form-check">
                                     <input className="form-check-input" type="checkbox" checked={cols[col]} id={col}
                                         onChange={(e) => {
@@ -240,7 +240,7 @@ function Projects({ database, changeDB }) {
                     </button>
 
 
-                    <CSVLink data={data} filename="Projects_Shagun_Mohta.csv">
+                    <CSVLink data={data} filename="Extra_Curriculars_Shagun_Mohta.csv">
                         <button
                             className="btn small"
                             title={"Download Table"}
@@ -277,4 +277,4 @@ function Projects({ database, changeDB }) {
     </>)
 }
 
-export default Projects
+export default Courses

@@ -101,6 +101,10 @@ button:hover {
   padding: 6px 10px;
 }
 
+.bold-icon {
+  -webkit-text-stroke: 1px black; /* Adjust thickness and color as needed */
+}
+
 
 
 .sql-editor {

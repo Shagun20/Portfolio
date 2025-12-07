@@ -125,7 +125,10 @@ function AboutMe({ database, changeDB }) {
             style={{
                 transition: "height 0.3s ease, margin-top 0.5s ease",
                 height: isOpen ? "calc(100vh - 45vh)" : "calc(100vh - 85vh)",
-                marginTop: is_run && isOpen? "5vh":"50vh"  // << this makes it SWIFT DOWN
+                // marginTop: is_run && isOpen? "5vh":"50vh"
+                marginTop: is_run ? isOpen ? "0" : "50vh" : "60vh" 
+                //   // << this makes it SWIFT DOWN
+  // << this makes it SWIFT DOWN
 
             }}
 
@@ -134,14 +137,14 @@ function AboutMe({ database, changeDB }) {
 
             <div className="row mb-1">
                 <button
-                    className="btn btn-sm small align-items-center justify-content-center"
-                    style={{ height: "20px" }}
+                    className="btn btn-sm w-100 small align-items-center justify-content-center"
+                    style={{ height: "20px"}}
                     onClick={() => setIsOpen(!isOpen)}
                 >
                     {isOpen ? (
-                        <i className="small bi bi-chevron-up"></i>
+                        <i className="small bi bi-chevron-double-down"></i>
                     ) : (
-                        <i className="small bi bi-chevron-down"></i>
+                        <i className="small bi bi-chevron-double-up"></i>
                     )}
                 </button>
 
@@ -236,7 +239,7 @@ function AboutMe({ database, changeDB }) {
                     </button>
 
 
-                    <CSVLink data={data} filename="About.csv">
+                    <CSVLink data={data} filename="About_Shagun_Mohta.csv">
                         <button
                             className="btn small"
                             style={{ fontSize: "12px", border: "none" }}

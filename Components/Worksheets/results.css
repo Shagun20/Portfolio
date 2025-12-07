@@ -1,21 +1,32 @@
-
-
 .results-table {
   background: var(--bg-panel);
   width: 100%;
   border-collapse: collapse;
+  font: "apercu-mono-regular" !important
 }
 
 .results-table th,
 .results-table td {
-  padding: 4px;              /* FIXED: remove space */
+  padding: 8px;
+  /* FIXED: remove space */
   border: 1px solid var(--border-light);
   font-size: 15px;
+  /* font: "apercu-mono-regular" !important */
+
+}
+
+.results-table th{
+  text-transform: uppercase;
+  font-size: 14px;
+
 }
 
 
 .results-table-wrapper {
-  flex-grow: 1;         /* takes remaining space */
-  overflow-y: auto;     /* vertical scrollbar */
-  overflow-x: auto;     /* horizontal scrollbar */
+  flex-grow: 1;
+  /* takes remaining space */
+  overflow-y: auto;
+  /* vertical scrollbar */
+  overflow-x: auto;
+  /* horizontal scrollbar */
 }
