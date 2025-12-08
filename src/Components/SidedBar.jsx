@@ -9,7 +9,7 @@ import { store } from '../shared/store';
 
 
 
-function Sidebar() {
+function Sidebar({setWidth, setSidebarWidth}) {
 
     const navigate = useNavigate();
 
@@ -62,7 +62,6 @@ function Sidebar() {
     const sidebar = document.querySelector(".sidebarcontainer");
     const resizer = document.querySelector(".resizer");
     const [isResizing, setIsResizing] = useState(false);
-    const [setWidth, setSidebarWidth] = useState(270);
     const sidebarRef = useRef(null);
 
 
@@ -90,7 +89,7 @@ function Sidebar() {
 
             newWidth = Math.min(Math.max(newWidth, 250), 280); // min/max width
 
-            setSidebarWidth(newWidth);
+            setSidebarWidth(`${newWidth}px`);
         },
         [isResizing]
     );

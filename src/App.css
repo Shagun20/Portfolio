@@ -1,8 +1,26 @@
+/*  */
+
+/* ---------------------- BASE ---------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------------------- LANDING PAGE ---------------------- */
+.landing-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh; /* full viewport height on desktop */
+  background-color: #f8f8f8;
+}
+
+/* ---------------------- SIDE NAV (DESKTOP) ---------------------- */
 .sideNav {
   width: 70px;
-  height: 100vh;               /* Always full height */
+  height: 100vh;
   background: #f7f7f7;
-  border-right: 1px solid #e6e8eb;
+  border-right: 1px solid #E6E8EB;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,20 +28,10 @@
   flex-direction: column;
   align-items: center;
   padding-top: 12px;
-    border-right: 1px solid #E6E8EB;   /* <-- THIS LINE */
-       /* Scroll if icons exceed area */
-
+  z-index: 100; /* added for safety if overlapping */
 }
 
-/* DIVIDERS */
-.sf-divider {
-  width: 40px;
-  height: 1px;
-  background: #e3e7eb;
-  margin: 10px 0;
-}
-
-/* MAIN ICON SECTION */
+/* ---------------------- ICON GROUP ---------------------- */
 .sf-group {
   display: flex;
   flex-direction: column;
@@ -33,7 +41,7 @@
 }
 
 /* ICONS */
-.sf-group i, img 
+.sf-group i,
 .sf-item {
   font-size: 16px;
   color: #474747;
@@ -42,42 +50,35 @@
   border-radius: 12px;
 }
 
-.sf-group i, img
-.sf-item{
-  font-size: 16px;
-  color: #474747;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 12px;
-}
-
-.icon-blue {
-  color: #29ABE2 !important;  
-  font-weight:bolder !important;
-    font-size: 20px  !important;
-/* override the default gray */
-}
-
-
-/* ACTIVE ITEM */
+/* ACTIVE ICON */
 .sf-item.active {
   background: #e9f3ff;
   color: #29B5E8;
-  border-radius: 12px;
 }
 
-/* HOVER EFFECT */
-.sf-group i:hover {
+/* ICON HOVER EFFECT */
+.sf-group i:hover,
+.sf-group img:hover {
   background: #f2f7ff;
   color: #29B5E8;
 }
 
-img:hover {
-  background: #f2f7ff;
-  color: #29B5E8;
+/* MAIN ICON HIGHLIGHT */
+.icon-blue {
+  color: #29ABE2 !important;
+  font-weight: bold !important;
+  font-size: 20px !important;
 }
 
-/* BOTTOM SECTION */
+/* ---------------------- DIVIDER ---------------------- */
+.sf-divider {
+  width: 40px;
+  height: 1px;
+  background: #e3e7eb;
+  margin: 10px 0;
+}
+
+/* ---------------------- BOTTOM SECTION ---------------------- */
 .sf-bottom {
   margin-top: auto;
   display: flex;
@@ -87,11 +88,11 @@ img:hover {
   align-items: center;
 }
 
-/* PROFILE BUBBLE */
+/* ---------------------- PROFILE BUBBLE ---------------------- */
 .sf-profile {
-  cursor: "default";
+  cursor: default;
   width: 38px;
-  height: 38px; /* Correct size */
+  height: 38px;
   border-radius: 50%;
   border: 1px solid #d8dde5;
   display: flex;
@@ -103,5 +104,42 @@ img:hover {
   color: #444;
 }
 
+@media (max-width: 768px) {
+  .sideNav {
+    width: 100%;
+    height: 60px;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 10px;
+    position: fixed;
+    bottom: 0;
+    border-right: none;
+    border-top: 1px solid #E6E8EB;
+  }
 
+  .sf-group {
+    flex-direction: row;
+    gap: 12px;
+  }
 
+  .sf-bottom {
+    display: none; /* hide bottom profile on mobile */
+  }
+
+  .sf-group i {
+    font-size: 18px;
+    padding: 6px;
+  }
+
+  .sf-profile {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .landing-page {
+    height: auto;
+    width: auto;
+    padding-bottom: 60px; /* space for bottom nav */
+  }
+}

@@ -4,16 +4,18 @@ import AboutMe from "./Worksheets/AboutMe";
 import { Link, NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect} from 'react'
+import './workspace.css'
 
 import { Outlet } from "react-router-dom";
 
-export default function Workspace({ tab }) {
+export default function Workspace({ tab, width }) {
     const [database, setDatabase] = useState('Choose Database');
 
     return (
-        <div className="flex-grow-1 p-2" style={{ overflow: "auto" }}>
+        <div className="p-2" style={{ overflow: "auto" }}>
 
-            <div style={{ minWidth: "800px", width: "1000px", maxWidth: "1200px" }}>
+            <div className="worksheet-container" style={{ maxHeight:"100%" , maxWidth:"100%" }}>
+
                 <Outlet />
             </div>
         </div>

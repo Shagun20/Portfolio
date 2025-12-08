@@ -255,7 +255,7 @@ function Contact({ database, changeDB }) {
             </div>
 
 
-            {isOpen ? (
+            {is_run && isOpen ? (
                 data.length > 0 ? (
                     <DynamicTable data={data} cols={cols} />
                 ) : (

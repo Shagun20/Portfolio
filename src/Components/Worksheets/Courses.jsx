@@ -102,7 +102,7 @@ function Courses({ database, changeDB }) {
 
                         return (
                             <div
-                                key={word}
+                                key={index}
                                 className={`text p-1 ${isKeyword ? "text-uppercase sql-keyword" : isString ? "sql-string" : isNo ? "sql-number" :
                                     "text-lowercase"}`}
                             >
@@ -255,7 +255,7 @@ function Courses({ database, changeDB }) {
             </div>
 
 
-            {isOpen ? (
+            {is_run  && isOpen ? (
                 data.length > 0 ? (
                     <DynamicTable data={data} cols={cols} />
                 ) : (

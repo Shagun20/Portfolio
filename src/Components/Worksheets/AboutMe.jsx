@@ -246,8 +246,7 @@ function AboutMe({ database, changeDB }) {
                     <CSVLink data={data} filename="About_Shagun_Mohta.csv">
                         <button
                             className="btn small"
-                            title={"Download Table"}
-
+                            
                             style={{ fontSize: "12px", border: "none" }}
                         >
                             <i className="bi bi-download text-secondary"></i>
@@ -258,7 +257,7 @@ function AboutMe({ database, changeDB }) {
             </div>
 
 
-            {isOpen ? (
+            {is_run && isOpen ? (
                 data.length > 0 ? (
                     <DynamicTable data={data} cols={cols} />
                 ) : (
