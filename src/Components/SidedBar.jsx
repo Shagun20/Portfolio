@@ -13,19 +13,20 @@ function Sidebar() {
 
     const navigate = useNavigate();
 
-    const fullUrl = window.location.href.replace(/\/+$/, ""); // For the full URL
 
     const mapping = {
         "aboutme": "AboutMe.sql", 'education': 'Education.sql', "work_ex": 'Work_Ex.sql', "projects": "Projects.sql",
         "skills": "Skills.sql", "extra_curriculars": "Extra_Curriculars.sql", "contact": "Contact.sql", "courses": "Courses.sql"
     }
 
-    let fileA = mapping[fullUrl.substring(fullUrl.lastIndexOf('/') + 1)]; //this is the tab thats active right noww
+    const fullUrl = window.location.hash.replace("#/", "");
+
+    let fileA = mapping[fullUrl.split("/").pop()]; //this is the tab thats active right noww
 
 
     function handleButtonClick(file) {
 
-        navigate("/portfolio/workspace-shagun/" + file.replace(/\.[^/.]+$/, "").toLowerCase())
+        navigate("/" + file.replace(/\.[^/.]+$/, "").toLowerCase())
 
     }
 

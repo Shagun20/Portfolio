@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Workspace from "./Components/Workspace"
@@ -36,11 +36,11 @@ function App() {
 
   const [tab, setTab] = useState(mapping[fullUrl.substring(fullUrl.lastIndexOf('/') + 1)]); //this is the tab thats active right noww
 
- 
-  const navigate= useNavigate();
-   useEffect(() => {
-    navigate("/portfolio/workspace-shagun/aboutme");
-  }, []);
+
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   navigate("/portfolio/workspace-shagun/aboutme");
+  // }, []);
 
 
   return (
@@ -95,7 +95,7 @@ function App() {
             </HeaderNav>
 
             <Routes>
-              <Route path="/portfolio/workspace-shagun/" element={<Workspace tab={tab} />}>
+              <Route path="/" element={<Workspace tab={tab} />}>
 
                 <Route
                   index

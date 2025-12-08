@@ -27,8 +27,12 @@ function HeaderNav() {
     let is_active = 'AboutMe.sql';
 
     const [activeTab, setActiveTab] = useState(file_list[0]);
-    const fullUrl = window.location.href.replace(/\/+$/, ""); // For the full URL
-    const tab = fullUrl.substring(fullUrl.lastIndexOf('/') + 1);
+
+
+    // Extract correct route from HashRouter
+    const fullUrl = window.location.hash.replace("#/", "");
+    const tab = fullUrl.split("/").pop();
+
 
     const mapping = {
         "aboutme": "AboutMe.sql", 'education': 'Education.sql', "work_ex": 'Work_Ex.sql', "projects": "Projects.sql",
@@ -37,11 +41,11 @@ function HeaderNav() {
 
     useEffect(() => {
 
-        if(!file_list.includes(mapping[tab]))
-            file_list.push(mapping[tab])
+        if (mapping[tab] && !file_list.includes(mapping[tab])) {
+            setFileList(prev => [...prev, mapping[tab]]);
+        }
 
-
-        setActiveTab(mapping[tab])
+        setActiveTab(mapping[tab]);
 
     }, [tab]);
 
@@ -57,7 +61,7 @@ function HeaderNav() {
                 handleTabClick(newList[newIndex]);
             } else {
 
-                
+
             }
         }
     };
@@ -68,7 +72,7 @@ function HeaderNav() {
     // Define the function to handle tab clicks
     const handleTabClick = (file) => {
         setActiveTab(file); // This updates the state and triggers a re-render
-        navigate("/portfolio/workspace-shagun/" + file.replace(/\.[^/.]+$/, "").toLowerCase())
+        navigate("/" + file.replace(/\.[^/.]+$/, "").toLowerCase())
 
     };
     //by default;
@@ -86,8 +90,9 @@ function HeaderNav() {
 
                             to="/portfolio/workspace-shagun/"
                             onClick={(e) => {
-          e.preventDefault();
-          handleTabClick(file)}}
+                                e.preventDefault();
+                                handleTabClick(file)
+                            }}
                         >
                             <i class="bi bi-filetype-sql me-1"></i>
 
